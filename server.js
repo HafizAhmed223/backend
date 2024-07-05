@@ -9,7 +9,7 @@ const NodeCache = require("node-cache");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 const crawlbaseUrl = "https://api.crawlbase.com/";
 const token = process.env.API_KEY || "nB-dswOiI5a6Wmhyn6Kh8w"; // Your Crawlbase API token
 const cache = new NodeCache({ stdTTL: 86400, checkperiod: 120 });
