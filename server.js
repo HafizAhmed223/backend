@@ -1,11 +1,8 @@
-/**
- * Express server for scraping product reviews from Amazon.
- */
-
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const NodeCache = require("node-cache");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
@@ -13,7 +10,12 @@ const port = process.env.PORT || 8000;
 const crawlbaseUrl = "https://api.crawlbase.com/";
 const token = process.env.API_KEY || "nB-dswOiI5a6Wmhyn6Kh8w"; // Your Crawlbase API token
 const cache = new NodeCache({ stdTTL: 86400, checkperiod: 120 });
-
+app.use(
+  cors({
+    origin: "https://fyp-frontend-pied.vercel.app", // Allow your frontend origin
+    methods: ["GET", "POST"], // Allow specific HTTP methods
+  })
+);
 app.use(express.json());
 
 /**
